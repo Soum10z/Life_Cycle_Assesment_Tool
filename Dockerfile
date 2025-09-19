@@ -22,6 +22,9 @@ FROM node:18-alpine AS production
 # Install Python for ML models (optional)
 RUN apk add --no-cache python3 py3-pip
 
+# Install Python dependencies for ML models
+RUN pip3 install numpy pandas
+
 # Set working directory
 WORKDIR /app
 
