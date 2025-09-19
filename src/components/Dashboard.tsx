@@ -3,7 +3,6 @@ import { ArrowLeft, Download, Share2, AlertCircle, TrendingUp, Award, Zap } from
 import { LCAResponse } from '../types';
 import { PDFExportService } from '../services/pdfExport';
 import MetricsCards from './MetricsCards';
-import BarChart from './charts/BarChart';
 import PieChart from './charts/PieChart';
 
 interface DashboardProps {
@@ -92,17 +91,17 @@ const Dashboard: React.FC<DashboardProps> = ({ data, onBack }) => {
             </div>
           </div>
 
-          {/* Route Comparison Pie Charts */}
-          <PieChart data={data} />
-
-          {/* Carbon Footprint Chart */}
+          {/* Metrics Cards */}
           <div className="mb-12">
-            <BarChart
-              userImpacts={data.environmentalImpacts}
-              baselineImpacts={data.baselineImpacts}
-              scenario={data.scenario}
+            <MetricsCards
+              metrics={data.circularityMetrics}
+              environmentalImpacts={data.environmentalImpacts}
+              recycledContentAmount={data.recycledContentAmount || 0}
             />
           </div>
+
+          {/* Route Comparison Pie Charts */}
+          <PieChart data={data} />
 
           {/* AI Recommendations */}
           <div className="bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl border border-white/20 p-8 mb-12">
