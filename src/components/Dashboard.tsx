@@ -4,6 +4,7 @@ import { LCAResponse } from '../types';
 import { PDFExportService } from '../services/pdfExport';
 import MetricsCards from './MetricsCards';
 import BarChart from './charts/BarChart';
+import PieChart from './charts/PieChart';
 
 interface DashboardProps {
   data: LCAResponse;
@@ -91,14 +92,8 @@ const Dashboard: React.FC<DashboardProps> = ({ data, onBack }) => {
             </div>
           </div>
 
-          {/* Metrics Cards */}
-          <div className="mb-12">
-            <MetricsCards 
-              metrics={data.circularityMetrics} 
-              environmentalImpacts={data.environmentalImpacts}
-              recycledContentAmount={data.recycledContentAmount || 0}
-            />
-          </div>
+          {/* Route Comparison Pie Charts */}
+          <PieChart data={data} />
 
           {/* Carbon Footprint Chart */}
           <div className="mb-12">
